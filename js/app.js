@@ -310,7 +310,7 @@ class App {
  * Add event when the document is loaded
  */
 document.addEventListener("DOMContentLoaded", () => {
-    window.app = new App(10, 'AIzaSyA05tGHlW-PDmI8rnZ4PNN0NfykLhvN6lA');
+    window.app = new App(10, 'your google API key');
     const script = document.createElement("script");
     script.src = `https://maps.googleapis.com/maps/api/js?key=${app.APIKey}&libraries=places&callback=app.googleMap.init`;
     script.defer = true;
