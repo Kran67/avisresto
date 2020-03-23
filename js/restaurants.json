@@ -1,0 +1,82 @@
+﻿[
+   {
+      "restaurantName":"Bronco",
+      "address":"39 Rue des Petites Écuries, 75010 Paris",
+      "lat":48.8737815,
+      "long":2.3501649,
+      "ratings":[
+         {
+            "stars":4,
+            "comment":"Un excellent restaurant, j'y reviendrai ! Par contre il vaut mieux aimer la viande."
+         },
+         {
+            "stars":5,
+            "comment":"Tout simplement mon restaurant préféré !"
+         }
+      ]
+   },
+   {
+      "restaurantName":"Babalou",
+      "address":"4 Rue Lamarck, 75018 Paris",
+      "lat":48.8865035,
+      "long":2.3442197,
+      "ratings":[
+         {
+            "stars":5,
+            "comment":"Une minuscule pizzeria délicieuse cachée juste à côté du Sacré choeur !"
+         },
+         {
+            "stars":3,
+            "comment":"J'ai trouvé ça correct, sans plus"
+         }
+      ]
+   },
+   {
+      "restaurantName":"La Fourmi Ailée",
+      "address":"8 Rue du Fouarre, Paris",
+      "lat":48.8516639,
+      "long":2.3474032000000307,
+      "ratings":[
+         {
+            "stars":5,
+            "comment":"Très beau lieu, très original. Des desserts succulents, un très bon choix de thé aussi. Un accueil toujours aussi chaleureux.↵Je recommande fortement, ce sera un moment de partage très agréable."
+         },
+         {
+            "stars":4,
+            "comment":"Localisation exceptionelle au coeur du quartier latin. Bons produits préparés dans le restaurant principal. Cadre surprenant.↵Quelques plats traditionnels, quiches, salades et desserts."
+         }
+      ]
+   },
+   {
+      "restaurantName":"Auberge Notre Dame",
+      "address":"69 Quai de la Tournelle, Paris",
+      "lat":48.851206,
+      "long":2.3474032000000307,
+      "ratings":[
+         {
+            "stars":4,
+            "comment":"La nourriture (fondue savoyarde) était correct. On a pris le vin en pichet et c'était pas mauvais. Sinon c'était propre malgré les commentaires que j'ai vu. ↵En bref, ça reste un resto touristique."
+         },
+         {
+            "stars":2,
+            "comment":"Bof! Bof! J'ai eu aussi exactement le même problème; le serveur indien est vraiment un gros lourd, il veut mon numéro de téléphone et il le demande sans arête, la qualité de la nourriture est aussi médiocre! heureusement il y a plein d'autres bon restaurants dans les coins ! à fuir..."
+         }
+      ]
+   },
+   {
+      "restaurantName":"Sola",
+      "address":"12 Rue de l'Hôtel Colbert, Paris",
+      "lat":48.8515846,
+      "long":2.348303499999929,
+      "ratings":[
+         {
+            "stars":4,
+            "comment":"Déjà deux visites, c'est très très bon, fin, surprenant, audacieux, fusion réussie ! Nous avons opté pour un accompagnement 4 verres de vins avec une surprise pour le troisième verre : du saké ! Des choix pertinents.↵J'ai encore en mémoire une surprise fort agréable, le chef nous a servi en entremet un quart de tomate sur une assiette avec une pointe de sel, un goût exceptionnel je m'en souvient plus que les plats ! C était la fête de la tomate au village du chef au Japon tout simplement ! Merci chef quelle idée simple !"
+         },
+         {
+            "stars":5,
+            "comment":"Après une soirée inoubliable, j'y suis retourné une seconde fois. Cela m'a plu tout autant. Les mets franco-japonais sont excellents et très surprenants. Le service impeccable et attentionné."
+         }
+      ]
+   }   
+]

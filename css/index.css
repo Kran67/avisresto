@@ -1,0 +1,748 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+h3 {
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    outline: 0;
+    overflow: visible;
+    padding: 0;
+    vertical-align: baseline;
+    color: #000;
+    font-size: 15px;
+    line-height: 16px;
+    padding-bottom: 2px;
+    white-space: normal;
+}
+
+#map, #pano {
+    position: absolute;
+    left: 384px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#pano {
+    z-index: 1000002;
+}
+
+aside {
+    width: 384px;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.gmnoprint.gm-bundled-control.gm-bundled-control-on-bottom .gm-svpc {
+    display: none;
+}
+
+.gmnoprint:last-of-type .gm-style-mtc {
+    display: none !important;
+}
+
+#miniMap {
+    left: 406px;
+    bottom: 20px;
+    width: 75px;
+    height: 75px;
+    z-index: 1000001;
+    background-color: white;
+    border: 2px solid #000;
+    background-color: #FFF;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    position: absolute;
+}
+
+.miniMapBtn {
+    flex: 1;
+    outline: none;
+    border: none;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    color: #FFF;
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 50px;
+    cursor: pointer;
+}
+
+#plan {
+    background-image: url("../images/plan.jpg");
+}
+
+#satellite {
+    background-image: url("../images/satellite.jpg");
+}
+
+.hidden {
+    display: none !important;
+}
+
+#omnibox-container {
+    display: flex;
+    padding: 8px;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.omnibox {
+    display: flex;
+    background-color: #FFF;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0 rgba(0,0,0,0.02);
+    border-radius: 8px;
+    flex: 1;
+}
+
+    .omnibox.viewComments {
+        border-radius: 8px 8px 0 0;
+    }
+
+#searchbox {
+    position: relative;
+    box-sizing: border-box;
+    height: 48px;
+    border-bottom: 1px solid transparent;
+    padding: 12px 10px 11px 10px;
+    flex: 1;
+}
+
+#searchboxinput {
+    font-size: 15px;
+    height: 24px;
+    line-height: 24px;
+    vertical-align: top;
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    -webkit-text-fill-color: silver;
+    color: silver;
+    width: 100%;
+}
+
+.searchbox-searchbutton-container {
+    width: 54px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.searchbox-searchbutton {
+    display: block;
+    padding: 12px 15px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    font: inherit;
+    list-style: none;
+    margin: 0;
+    outline: 0;
+    overflow: visible;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+    .searchbox-searchbutton::before {
+        content: '';
+        display: block;
+        width: 24px;
+        height: 24px;
+        background: url("../images/search.png");
+        background-size: 72px 24px;
+    }
+
+
+#searchboxinput:not(:placeholder-shown) {
+    -webkit-text-fill-color: #000;
+    color: #000;
+}
+
+.filters {
+    display: flex;
+    flex-direction: row;
+    padding-right: 12px;
+    padding-left: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #dadce0;
+    margin-top: 65px;
+}
+
+    .filters .rating,
+    .filters .pager,
+    #order {
+        margin-right: 6px;
+    }
+
+        .filters .rating button {
+            background: transparent;
+            outline: 0;
+            overflow: visible;
+            vertical-align: baseline;
+            border: 1px solid #dadce0;
+            align-items: center;
+            border-radius: 32px;
+            color: #3C4043;
+            display: flex;
+            height: 32px;
+            padding: 0px 12px;
+            margin: 6px 0;
+            padding-right: 4px;
+            cursor: pointer;
+        }
+
+            .filters .rating button.selected {
+                color: #1967D2;
+                background-color: #E8F0FE;
+                border-color: #D2E3FC;
+            }
+
+            .filters .rating button span,
+            .filters .pager span,
+            #order span {
+                letter-spacing: 0.01428571em;
+                font-family: Roboto, Arial,sans-serif;
+                font-size: .875rem;
+                font-weight: 400;
+                line-height: 1.25rem;
+                max-width: 150px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+.dropdown-icon {
+    background-image: url("../images/arrow_drop_down.png");
+    background-size: 24px 24px;
+    height: 24px;
+    width: 24px;
+}
+
+#order {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    cursor: pointer;
+    background: transparent;
+    outline: 0;
+    border: none;
+}
+
+    #order div {
+        background-size: 24px 24px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 24px;
+        width: 24px;
+    }
+
+    #order .arrow-up-down {
+        background-image: url("../images/arrow_up_down.png");
+    }
+
+    #order .arrow-up {
+        background-image: url("../images/arrow_up.png");
+    }
+
+    #order .arrow-down {
+        background-image: url("../images/arrow_drop_down.png");
+    }
+
+.filters .pager {
+    display: flex;
+    align-items: center;
+}
+
+    .filters .pager span,
+    .filters .pager button {
+        margin-right: 5px;
+        background: none;
+        outline: none;
+        border: none;
+    }
+
+    .filters .pager button {
+        opacity: 0.4;
+        cursor: pointer;
+        margin-left: 14px;
+        padding-left: 4px;
+        padding-right: 4px;
+        text-decoration: none;
+        vertical-align: top;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        background-position: center center;
+        background-repeat: no-repeat;
+        padding: 0;
+        height: 24px;
+        width: 24px;
+        background-size: 24px 24px;
+    }
+
+        .filters .pager button[disabled] {
+            opacity: 0.2;
+        }
+
+        .filters .pager button.left {
+            background-image: url("../images/chevron_left.png");
+        }
+
+        .filters .pager button.right {
+            background-image: url("../images/chevron_right.png");
+        }
+
+#results,
+#comments {
+    overflow-y: auto;
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+}
+
+    #results.searching {
+        background-image: url("../images/spinner.gif");
+        background-position: center 10px;
+        background-repeat: no-repeat;
+        padding-top: 40px;
+    }
+
+    #results.insetShadow,
+    #comments.insetShadow {
+        box-shadow: inset 0 14px 10px -10px rgba(60, 64, 67, 0.28);
+    }
+
+.item {
+    cursor: pointer;
+    box-sizing: border-box;
+    min-height: 112px;
+    padding: 10px 18px 10px 24px;
+    flex: none;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+    .item:hover {
+        background-color: #fafafa;
+    }
+
+.itemContent {
+    display: flex;
+}
+
+.itemContentText {
+    color: #70757A;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 16px;
+    min-width: 1px;
+    flex: 1;
+    padding-top: 2px;
+}
+
+    .itemContentText h3 {
+        color: #000;
+        font-size: 15px;
+        line-height: 16px;
+        padding-bottom: 2px;
+        white-space: normal;
+        font-weight: normal;
+    }
+
+.itemContentImg {
+    display: inline-block;
+    height: 92px;
+    width: 80px;
+    margin-left: 10px;
+    vertical-align: top;
+    flex: 0 0 80px;
+}
+
+.cards-rating-score {
+    vertical-align: middle;
+    color: #E7711B;
+    margin-right: 1px;
+    background-color: transparent !important;
+}
+
+    .cards-rating-score.red {
+        color: #E72D1B;
+    }
+
+    .cards-rating-score.yellow {
+        color: #E7D71B;
+    }
+
+    .cards-rating-score.lime {
+        color: #6FE71B;
+    }
+
+    .cards-rating-score.green {
+        color: #1BE74F;
+    }
+
+.cards-rating-stars {
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    display: inline-block;
+    height: 16px;
+    margin-right: 1px;
+    font-size: 0;
+    list-style: none;
+}
+
+.cards-rating-star {
+    background-image: url("../images/orange_star.png");
+    background-repeat: no-repeat;
+    background-position: 0 1px;
+    background-size: 37px 13px;
+    display: inline-block;
+    height: 13px;
+    width: 13px;
+    background-color: transparent !important;
+}
+
+.cards-rating-star-empty {
+    background-position: -25px 1px;
+}
+
+.cards-rating-star-half {
+    background-position: -13px 1px;
+}
+
+.cards-rating-star.red {
+    background-image: url("../images/red_star.png");
+}
+
+.cards-rating-star.orange {
+    background-image: url("../images/orange_star.png");
+}
+
+.cards-rating-star.yellow {
+    background-image: url("../images/yellow_star.png");
+}
+
+.cards-rating-star.lime {
+    background-image: url("../images/lime_star.png");
+}
+
+.cards-rating-star.green {
+    background-image: url("../images/green_star.png");
+}
+
+.section-result-num-ratings {
+    color: #bbb;
+    vertical-align: middle;
+}
+
+.section-result-details-container {
+    padding-top: 2px;
+}
+
+.section-result-details,
+.section-result-separator,
+.section-result-location {
+    vertical-align: middle;
+}
+
+.section-result-location {
+    display: inline-block;
+}
+
+.section-result-opening-hours {
+    padding-top: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#ratingfilters {
+    top: 71px;
+    left: 12px;
+    border-radius: 4px;
+    min-width: 112px;
+    max-width: 280px;
+    padding: 8px 0;
+    color: #3C4043;
+    max-width: 265px;
+    z-index: 11;
+    max-height: 500px;
+    background: #fff;
+    padding: 6px 0;
+    white-space: nowrap;
+    cursor: default;
+    margin: 0;
+    border: 1px solid rgba(0,0,0,0.2);
+    position: fixed;
+    box-shadow: 0 1px 6px rgba(60,64,67,.28);
+}
+
+.ratingItem {
+    margin: 0;
+    padding: 0 16px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+    .ratingItem:hover {
+        background-color: #E8F0FE;
+    }
+
+    .ratingItem .cards-rating-score {
+        margin-right: 5px;
+    }
+
+
+::-webkit-scrollbar, ::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb, ::-webkit-scrollbar-thumb {
+    background-color: #888;
+}
+
+::-webkit-scrollbar-track, ::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+}
+
+.glass {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(128,128,128,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#addRestaurant {
+    width: 400px;
+    height: 500px;
+    z-index: 99999;
+    background-color: #FFF;
+    border: 1px solid silver;
+    border-radius: 8px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.header {
+    border-bottom: 1px solid silver;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#closeBtn {
+    position: absolute;
+    right: 5px;
+    top: 0;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+#comment {
+    height: 8rem !important;
+    overflow-y: auto !important;
+}
+
+.ratingContainer {
+    height: 35px;
+}
+
+fieldset, label {
+    margin: 0;
+    padding: 0;
+}
+
+.rating {
+    border: none;
+    float: left;
+}
+
+    .rating > input {
+        display: none;
+    }
+
+    .rating > label:before {
+        margin: 5px;
+        font-size: 1.25em;
+        font-family: FontAwesome;
+        display: inline-block;
+        content: "\f005";
+    }
+
+    .rating > .half:before {
+        content: "\f089";
+        position: absolute;
+    }
+
+    .rating > label {
+        color: #ddd;
+        float: right;
+    }
+
+    /***** CSS Magic to Highlight Stars on Hover *****/
+
+    .rating > input:checked ~ label, /* show gold star when clicked */
+    .rating:not(:checked) > label:hover, /* hover current star */
+    .rating:not(:checked) > label:hover ~ label {
+        color: #FFD700;
+    }
+        /* hover previous stars in list */
+
+        .rating > input:checked + label:hover, /* hover current star when changing rating */
+        .rating > input:checked ~ label:hover,
+        .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+        .rating > input:checked ~ label:hover ~ label {
+            color: #FFED85;
+        }
+
+
+.right {
+    float: right;
+}
+
+#comments {
+    display: flex;
+    overflow: hidden;
+}
+
+#commentsFirstImg {
+    width: 100%;
+    height: 240px;
+    min-height: 240px;
+    cursor: pointer;
+}
+
+.commentsHeaderTitle {
+    font-size: 13px;
+    padding: 16px 24px 16px;
+}
+
+.commentsTitle {
+    margin: 0;
+    overflow: visible;
+    padding: 0;
+    font-family: 'Google Sans',Roboto, Arial,sans-serif;
+    font-size: 1.375rem;
+    font-weight: 400;
+    line-height: 1.75rem;
+}
+
+.commentsHeaderTitle .section-result-rating {
+    margin-top: 8px;
+}
+
+#commentsList {
+    border-top: 1px solid silver;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.comment {
+    font-size: 13px;
+    padding: 10px 24px;
+    page-break-inside: avoid;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid silver;
+}
+
+.commentHeader {
+    display: flex;
+}
+
+.commentHeaderProfileImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.commentHeaderProfile {
+    display: flex;
+    flex-direction: column;
+}
+
+.commentHeaderProfileName {
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.commentRatingTime {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.commentText {
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.toolbar {
+    background-color: #fff;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+    font-size: 13px;
+    padding: 8px 20px;
+    border-top: 1px solid silver;
+    display: flex;
+    justify-content: space-between;
+}
+
+#backBtn,
+#addCommentBtn {
+    color: #4285F4;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    outline: 0;
+    overflow: visible;
+    padding: 0;
+    font-family: Roboto;
+}
+
+.gm-iv-address {
+    display:none;
+}

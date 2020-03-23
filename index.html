@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Avis de restaurants</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <script src="./js/markerclustererplus.min.js"></script>
+    <script type="module">
+        import "./js/app.js";
+    </script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="pano" class="hidden"></div>
+    <aside>
+        <div id="omnibox-container">
+            <div class="omnibox">
+                <div id="searchbox">
+                    <input autofocus="autofocus" autocomplete="off" type="text" id="searchboxinput" class="searchboxinput" placeholder="Rechercher des restaurants dans la ville de..." />
+                </div>
+                <div class="searchbox-searchbutton-container">
+                    <button aria-label="Rechercher" id="searchbox-searchbutton" class="searchbox-searchbutton" title="Rechercher"></button>
+                </div>
+            </div>
+            <div class="toolbar hidden">
+                <button id="backBtn">Retour aux résultats</button>
+                <button id="addCommentBtn">Ajouter un commentaire</button>
+            </div>
+        </div>
+        <div class="filters">
+            <div class="rating">
+                <button id="filterRating">
+                    <span>Note</span>
+                    <img class="hidden" src="images/star.png" alt="" />
+                    <span class="dropdown-icon"></span>
+                </button>
+            </div>
+            <button id="order" title="Tri les restaurants par les avis">
+                <img src="images/star.png" alt="" />
+                <span class="dropdown-icon arrow-up-down"></span>
+            </button>
+            <div class="pager">
+                <span>Résultats </span><span id="page">1</span><span> – </span><span id="maxPages">x</span>
+                <button id="btnPrevPage" class="left" disabled></button>
+                <button id="btnNextPage" class="right" disabled></button>
+            </div>
+        </div>
+        <div id="results"></div>
+        <div id="comments" class="hidden animated slideInLeft">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" id="commentsFirstImg" alt="" title="Cliquez ici pour afficher/cacher le panorama de la rue" />
+            <div class="commentsHeaderTitle">
+                <h1 class="commentsTitle">Comment</h1>
+                <div class="section-result-rating">
+                    <span class="cards-rating-score red">1</span>
+                    <ol class="cards-rating-stars">
+                        <li class="cards-rating-star red"></li>
+                        <li class="cards-rating-star cards-rating-star-empty red"></li>
+                        <li class="cards-rating-star cards-rating-star-empty red"></li>
+                        <li class="cards-rating-star cards-rating-star-empty red"></li>
+                        <li class="cards-rating-star cards-rating-star-empty red"></li>
+                    </ol>
+                    <span class="section-result-num-ratings">(1)</span>
+                    <div class="section-result-details-container">
+                        <span class="section-result-details">Restaurant</span>
+                        <span class="section-result-separator">·</span>
+                        <span class="section-result-location"></span>
+                    </div>
+                    <div class="section-result-opening-hours"></div>
+                </div>
+            </div>
+            <div id="commentsList"></div>
+        </div>
+    </aside>
+    <div id="miniMap">
+        <button id="plan" class="miniMapBtn hidden">Plan</button>
+        <button id="satellite" class="miniMapBtn">Satellite</button>
+    </div>
+    <div id="ratingfilters" class="hidden">
+        <div class="ratingItem" data-index="-1">Toutes les notes</div>
+        <div class="ratingItem" data-index="2.0">
+            <span class="cards-rating-score red">2.0</span>
+            <ol class="cards-rating-stars">
+                <li class="cards-rating-star red"></li>
+                <li class="cards-rating-star red"></li>
+                <li class="cards-rating-star cards-rating-star-empty"></li>
+                <li class="cards-rating-star cards-rating-star-empty"></li>
+                <li class="cards-rating-star cards-rating-star-empty"></li>
+            </ol>
+        </div>
+        <div class="ratingItem" data-index="2.5">
+            <span class="cards-rating-score orange">2.5</span>
+            <ol class="cards-rating-stars">
+                <li class="cards-rating-star orange"></li>
+                <li class="cards-rating-star orange"></li>
+                <li class="cards-rating-star cards-rating-star-half orange"></li>
+                <li class="cards-rating-star cards-rating-star-empty"></li>
+                <li class="cards-rating-star cards-rating-star-empty"></li>
+            </ol>
+        </div>
+        <div class="ratingItem" data-index="3.0">
+            <span class="cards-rating-score yellow">3.0</span>
+            <ol class="cards-rating-stars">
+                <li class="cards-rating-star yellow"></li>
+                <li class="cards-rating-star yellow"></li>
+                <li class="cards-rating-star yellow"></li>
+                <li class="cards-rating-star cards-rating-star-empty"></li>
+                <li class="cards-rating-star cards-rating-star-empty"></li>
+            </ol>
+        </div>
+        <div class="ratingItem" data-index="3.5">
+            <span class="cards-rating-score yellow">3.5</span>
+            <ol class="cards-rating-stars">
+                <li class="cards-rating-star yellow"></li>
+                <li class="cards-rating-star yellow"></li>
+                <li class="cards-rating-star yellow"></li>
+                <li class="cards-rating-star cards-rating-star-half yellow"></li>
+                <li class="cards-rating-star cards-rating-star-empty"></li>
+            </ol>
+        </div>
+        <div class="ratingItem" data-index="4.0">
+            <span class="cards-rating-score lime">4.0</span>
+            <ol class="cards-rating-stars">
+                <li class="cards-rating-star lime"></li>
+                <li class="cards-rating-star lime"></li>
+                <li class="cards-rating-star lime"></li>
+                <li class="cards-rating-star lime"></li>
+                <li class="cards-rating-star cards-rating-star-empty"></li>
+            </ol>
+        </div>
+        <div class="ratingItem" data-index="4.5">
+            <span class="cards-rating-score lime">4.5</span>
+            <ol class="cards-rating-stars">
+                <li class="cards-rating-star lime"></li>
+                <li class="cards-rating-star lime"></li>
+                <li class="cards-rating-star lime"></li>
+                <li class="cards-rating-star lime"></li>
+                <li class="cards-rating-star cards-rating-star-half lime"></li>
+            </ol>
+        </div>
+        <div class="ratingItem" data-index="5.0">
+            <span class="cards-rating-score green">5.0</span>
+            <ol class="cards-rating-stars">
+                <li class="cards-rating-star green"></li>
+                <li class="cards-rating-star green"></li>
+                <li class="cards-rating-star green"></li>
+                <li class="cards-rating-star green"></li>
+                <li class="cards-rating-star green"></li>
+            </ol>
+        </div>
+    </div>
+    <div class="glass hidden">
+        <div id="addRestaurant" class="animated bounceIn">
+            <div class="header">
+                <h5 class="title">Ajouter un restaurant</h5>
+            </div>
+            <div class="content">
+                <form action="#" class="col s12">
+                    <div class="input-field col s12">
+                        <input id="name" type="text" class="validate" />
+                        <label for="name">Nom du restaurant</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="pseudo" type="text" class="validate" />
+                        <label for="pseudo">Votre pseudo</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <span>Votre note</span>
+                        <div class="ratingContainer">
+                            <fieldset class="rating">
+                                <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Excellent"></label>
+                                <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="Très bien"></label>
+                                <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Assez bien"></label>
+                                <input type="radio" id="star3half" name="rating" value="3.5" /><label class="half" for="star3half" title="Bien"></label>
+                                <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Moyen"></label>
+                                <input type="radio" id="star2half" name="rating" value="2.5" /><label class="half" for="star2half" title="Un peu mauvais"></label>
+                                <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Mauvais"></label>
+                                <input type="radio" id="star1half" name="rating" value="1.5" /><label class="half" for="star1half" title="Très mauvais"></label>
+                                <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="A éviter"></label>
+                                <input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf" title="Même pas y entrer"></label>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="input-field col s12">
+                        <textarea id="comment" class="materialize-textarea" rows="5"></textarea>
+                        <label for="comment">Votre commentaire</label>
+                    </div>
+                    <div class="row">
+                        <div class="col s6">
+                            <a class="waves-effect waves-light btn" id="btnAdd">Ajouter</a>
+                        </div>
+                        <div class="col s6">
+                            <a class="waves-effect waves-light btn right" id="btnCancel">Annuler</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
